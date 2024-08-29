@@ -37,6 +37,9 @@ end)
 require('mason-lspconfig').setup({
   -- configure, which server should be ensured to be installed
   ensure_installed = {
+    'lua_ls',
+    'hydra_lsp', -- yaml
+    'harper_ls', -- toml
   },
 })
 
@@ -74,7 +77,10 @@ require('mason-lspconfig').setup_handlers({
       },
     })
   end,
-  ['yamlls'] = function()
-      lspconfig.yamlls.setup()
-  end
+  ['hydra_lsp'] = function()
+    lspconfig.hydra_lsp.setup({})
+  end,
+  ['harper_ls'] = function()
+    lspconfig.harper_ls.setup({})
+  end,
 })

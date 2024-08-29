@@ -12,7 +12,8 @@ return {
         'lua',
         'bash',
         'comment',
-        'rust',
+        'yaml',
+        'toml',
       },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
