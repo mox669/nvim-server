@@ -81,6 +81,8 @@ require('mason-lspconfig').setup_handlers({
     lspconfig.hydra_lsp.setup({})
   end,
   ['harper_ls'] = function()
-    lspconfig.harper_ls.setup({})
+    lspconfig.harper_ls.setup({
+      filetypes = { 'toml' },
+    })
   end,
 })
