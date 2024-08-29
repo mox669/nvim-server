@@ -1,1 +1,1 @@
-personal neovim configuration
+personal neovim configuration for servers
