@@ -60,7 +60,5 @@ return {
       },
       extensions = {},
     })
-
-    require('telescope').load_extension('notify')
   end,
 }

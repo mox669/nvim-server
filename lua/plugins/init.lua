@@ -15,7 +15,7 @@ return {
   {
     'zootedb0t/citruszest.nvim',
     lazy = false,
-    priority = 1000,
+    priority = 999,
   },
 
   ----------
@@ -65,9 +65,6 @@ return {
   'hrsh7th/cmp-nvim-lua',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-cmdline',
-  'rafamadriz/friendly-snippets',
-  'saadparwaiz1/cmp_luasnip',
-  'p00f/clangd_extensions.nvim',
   ------
   -- Deps
   'nvim-lua/plenary.nvim',

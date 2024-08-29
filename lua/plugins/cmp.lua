@@ -13,50 +13,12 @@ return {
       return
     end
 
-    local snip_status_ok, luasnip = pcall(require, 'luasnip')
-    if not snip_status_ok then
-      return
-    end
-
     local check_backspace = function()
       local col = vim.fn.col('.') - 1
       return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
     end
 
-    local kind_icons = {
-      Text = ' ',
-      Method = ' ',
-      Function = '󰡱 ',
-      Constructor = '  ',
-      Field = '  ',
-      Variable = '󰫧  ',
-      Class = '  ',
-      Interface = '  ',
-      Module = '  ',
-      Property = '  ',
-      Unit = '  ',
-      Value = '  ',
-      Enum = '  ',
-      Keyword = '  ',
-      Snippet = '  ',
-      Color = '  ',
-      File = '  ',
-      Reference = ' ',
-      Folder = '  ',
-      EnumMember = '  ',
-      Constant = '  ',
-      Struct = '  ',
-      Event = ' ',
-      Operator = ' ',
-      TypeParameter = '󰉺 ',
-    }
-
     cmp.setup({
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -104,27 +66,14 @@ return {
           'i',
           's',
         }),
-        ['<M-;>'] = cmp.mapping(function()
-          vim.api.nvim_feedkeys(
-            vim.fn['copilot#Accept'](
-              vim.api.nvim_replace_termcodes('<Tab>', true, true, true)
-            ),
-            'n',
-            true
-          )
-        end),
       },
       formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
+        fields = { 'abbr', 'menu' },
         format = function(entry, vim_item)
-          -- Kind icons
-          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-
           -- NOTE: order matters
           vim_item.menu = ({
             nvim_lsp = '(Lsp)',
             nvim_lua = '(Nvim)',
-            luasnip = '(LuaSnip)',
             buffer = '(Buffer)',
             path = '(Path)',
           })[entry.source.name]
@@ -136,7 +85,6 @@ return {
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.recently_used,
-          require('clangd_extensions.cmp_scores'),
           cmp.config.compare.kind,
           cmp.config.compare.sort_text,
           cmp.config.compare.length,
@@ -146,7 +94,6 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'luasnip' },
         {
           name = 'buffer',
           option = {

@@ -8,7 +8,6 @@ local cmp_lsp = require('cmp_nvim_lsp')
 
 local function create_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
   vim.list_extend(
     capabilities.textDocument.completion.completionItem.resolveSupport.properties,
     {
